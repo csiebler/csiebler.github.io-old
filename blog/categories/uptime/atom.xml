@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: uptime | My Octopress Blog]]></title>
+  <title><![CDATA[Category: Uptime | My Octopress Blog]]></title>
   <link href="http://csiebler.github.io/blog/categories/uptime/atom.xml" rel="self"/>
   <link href="http://csiebler.github.io/"/>
-  <updated>2014-02-09T14:56:34+01:00</updated>
+  <updated>2014-02-09T14:58:50+01:00</updated>
   <id>http://csiebler.github.io/</id>
   <author>
     <name><![CDATA[Clemens Siebler]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[The problem with Pingdom]]></title>
+    <title type="html"><![CDATA[The Problem With Pingdom]]></title>
     <link href="http://csiebler.github.io/blog/2012/07/22/the-problem-with-pingdom/"/>
     <updated>2012-07-22T19:13:00+02:00</updated>
     <id>http://csiebler.github.io/blog/2012/07/22/the-problem-with-pingdom</id>
