@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: JaCoCo | #Code #Cook #Travel]]></title>
-  <link href="http://csiebler.github.io/blog/categories/jacoco/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Jmockit | #Code #Cook #Travel]]></title>
+  <link href="http://csiebler.github.io/blog/categories/jmockit/atom.xml" rel="self"/>
   <link href="http://csiebler.github.io/"/>
   <updated>2014-03-01T21:49:51+01:00</updated>
   <id>http://csiebler.github.io/</id>
@@ -59,60 +59,6 @@ That&rsquo;s it &ndash; All tests pass, not a single issue! It will automaticall
 <h1>Final thoughts</h1>
 
 <p>If you can live without a Jenkins plugin, use JMockit plus its own coverage tool. As having no Jenkins integration is a deal breaker for me, I&rsquo;m going to stick with the JaCoCo workaround for now. It may also be worth investigating the effects of online/offline instrumentation, but well, one thing at a time.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Multi-project Code Coverage Using Gradle and JaCoCo]]></title>
-    <link href="http://csiebler.github.io/blog/2014/02/09/multi-project-code-coverage-using-gradle-and-jacoco/"/>
-    <updated>2014-02-09T18:38:31+01:00</updated>
-    <id>http://csiebler.github.io/blog/2014/02/09/multi-project-code-coverage-using-gradle-and-jacoco</id>
-    <content type="html"><![CDATA[<p>After playing around with a couple of different Cobertura plugins for Gradle, I realized that using the built-in JaCoCo plugin is much easier to set up in a project consisting of multiple subprojects. Here is a quick solution for generating a holistic code coverage report in Gradle.</p>
-
-<p>Summary:</p>
-
-<ul>
-<li>The root-level project doesn&rsquo;t contain any code, it just controls the overall build process</li>
-<li>The Jacoco plugin is applied to all subprojects &ndash; the <code>jacoco</code> task will instrument the classes and capture the execution data in <code>&lt;path_to_subproject&gt;/build/jacoco/*.exec</code></li>
-<li>The root-level <code>build.gradle</code> uses the <code>JacocoReport</code> task to generate the holistic coverage report</li>
-</ul>
-
-
-<p>``` groovy build.gradle (root-level project)</p>
-
-<p>allprojects {
-  apply plugin: &lsquo;jacoco&rsquo;
-}</p>
-
-<p>task codeCoverageReport(type: JacocoReport) {</p>
-
-<pre><code>// Gather execution data from all subprojects
-// (change this if you e.g. want to calculate unit test/integration test coverage separately)
-executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
-
-// Add all relevant sourcesets from the subprojects 
-subprojects.each {
-   sourceSets it.sourceSets.main
-}
-
-reports {
-  xml.enabled true
-  html.enabled true
-  html.destination "${buildDir}/reports/jacoco"
-  csv.enabled false
-}
-</code></pre>
-
-<p>}</p>
-
-<p>// always run the tests before generating the report
-codeCoverageReport.dependsOn {</p>
-
-<pre><code>subprojects*.test
-</code></pre>
-
-<p>}
-```</p>
 ]]></content>
   </entry>
   

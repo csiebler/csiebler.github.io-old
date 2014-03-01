@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Multi-project Code Coverage Using Gradle and Jacoco - #Code #Cook #Travel</title>
+  <title>Multi-project Code Coverage Using Gradle and JaCoCo - #Code #Cook #Travel</title>
   <meta name="author" content="Clemens Siebler">
 
   
-  <meta name="description" content="After playing around with a couple of different Cobertura plugins for Gradle, I realized that using the built-in Jacoco plugin is much easier to set &hellip;">
+  <meta name="description" content="After playing around with a couple of different Cobertura plugins for Gradle, I realized that using the built-in JaCoCo plugin is much easier to set &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -82,7 +82,7 @@
   
   <header>
     
-      <h1 class="entry-title">Multi-project Code Coverage Using Gradle and Jacoco</h1>
+      <h1 class="entry-title">Multi-project Code Coverage Using Gradle and JaCoCo</h1>
     
     
       <p class="meta">
@@ -105,13 +105,13 @@
   </header>
 
 
-<div class="entry-content"><p>After playing around with a couple of different Cobertura plugins for Gradle, I realized that using the built-in Jacoco plugin is much easier to set up in a project consisting of multiple subprojects. Here is a quick solution for generating a holistic code coverage report in Gradle.</p>
+<div class="entry-content"><p>After playing around with a couple of different Cobertura plugins for Gradle, I realized that using the built-in JaCoCo plugin is much easier to set up in a project consisting of multiple subprojects. Here is a quick solution for generating a holistic code coverage report in Gradle.</p>
 
 <p>Summary:</p>
 
 <ul>
 <li>The root-level project doesn&rsquo;t contain any code, it just controls the overall build process</li>
-<li>The Jacoco plugin is applied to all subprojects &ndash; the jacoco task will instrument the classes and capture the execution data in <code>&lt;path_to_subproject&gt;/build/jacoco/*.exec</code></li>
+<li>The Jacoco plugin is applied to all subprojects &ndash; the <code>jacoco</code> task will instrument the classes and capture the execution data in <code>&lt;path_to_subproject&gt;/build/jacoco/*.exec</code></li>
 <li>The root-level <code>build.gradle</code> uses the <code>JacocoReport</code> task to generate the holistic coverage report</li>
 </ul>
 
@@ -201,7 +201,7 @@
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/gradle/'>Gradle</a>, <a class='category' href='/blog/categories/jacoco/'>Jacoco</a>, <a class='category' href='/blog/categories/code-coverage/'>code coverage</a>, <a class='category' href='/blog/categories/multi-projects/'>multi-projects</a>, <a class='category' href='/blog/categories/subprojects/'>subprojects</a>
+    <a class='category' href='/blog/categories/gradle/'>Gradle</a>, <a class='category' href='/blog/categories/jacoco/'>JaCoCo</a>, <a class='category' href='/blog/categories/code-coverage/'>code coverage</a>, <a class='category' href='/blog/categories/multi-projects/'>multi-projects</a>, <a class='category' href='/blog/categories/subprojects/'>subprojects</a>
   
 </span>
 
@@ -219,6 +219,8 @@
     
     <p class="meta">
       
+      
+        <a class="basic-alignment right" href="/blog/2014/03/01/gradle-jmockit-code-coverage-troubles/" title="Next Post: Gradle/JMockit/Code Coverage Troubles">Gradle/JMockit/Code Coverage Troubles &raquo;</a>
       
     </p>
   </footer>
@@ -239,7 +241,11 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2014/02/09/multi-project-code-coverage-using-gradle-and-jacoco/">Multi-project Code Coverage Using Gradle and Jacoco</a>
+        <a href="/blog/2014/03/01/gradle-jmockit-code-coverage-troubles/">Gradle/JMockit/Code Coverage Troubles</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/02/09/multi-project-code-coverage-using-gradle-and-jacoco/">Multi-project Code Coverage Using Gradle and JaCoCo</a>
       </li>
     
   </ul>

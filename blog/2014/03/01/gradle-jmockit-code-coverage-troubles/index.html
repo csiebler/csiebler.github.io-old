@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>#Code #Cook #Travel</title>
+  <title>Gradle/JMockit/Code Coverage Troubles - #Code #Cook #Travel</title>
   <meta name="author" content="Clemens Siebler">
 
   
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://csiebler.github.io">
+  <link rel="canonical" href="http://csiebler.github.io/blog/2014/03/01/gradle-jmockit-code-coverage-troubles">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="#Code #Cook #Travel" type="application/atom+xml">
@@ -77,15 +77,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/03/01/gradle-jmockit-code-coverage-troubles/">Gradle/JMockit/Code Coverage Troubles</a></h1>
+      <h1 class="entry-title">Gradle/JMockit/Code Coverage Troubles</h1>
     
     
       <p class="meta">
@@ -108,7 +105,7 @@
   </header>
 
 
-  <div class="entry-content"><p>For the past week, I&rsquo;ve been <del>playing</del> messing around with generating a decent test coverage report through Gradle. The project I am currently working on contains many older unit tests which use jMock. However, most of the newer ones use JMockit. JMockit seems to be a little tricky to integrate with most of the popular code coverage tools out there. Here are my experiences for using jMock and JMockit with EMMA, Cobertura, and JaCoCo.</p>
+<div class="entry-content"><p>For the past week, I&rsquo;ve been <del>playing</del> messing around with generating a decent test coverage report through Gradle. The project I am currently working on contains many older unit tests which use jMock. However, most of the newer ones use JMockit. JMockit seems to be a little tricky to integrate with most of the popular code coverage tools out there. Here are my experiences for using jMock and JMockit with EMMA, Cobertura, and JaCoCo.</p>
 
 <h1>EMMA</h1>
 
@@ -156,22 +153,16 @@
 
 <p>If you can live without a Jenkins plugin, use JMockit plus its own coverage tool. As having no Jenkins integration is a deal breaker for me, I&rsquo;m going to stick with the JaCoCo workaround for now. It may also be worth investigating the effects of online/offline instrumentation, but well, one thing at a time.</p>
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/02/09/multi-project-code-coverage-using-gradle-and-jacoco/">Multi-project Code Coverage Using Gradle and JaCoCo</a></h1>
-    
-    
-      <p class="meta">
-        
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Clemens Siebler</span></span>
+
+      
 
 
 
@@ -183,95 +174,44 @@
   
 
 
-<time datetime="2014-02-09T18:38:31+01:00" pubdate data-updated="true">Feb 9<span>th</span>, 2014</time>
-        
-      </p>
+<time datetime="2014-03-01T16:37:01+01:00" pubdate data-updated="true">Mar 1<span>st</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/gradle/'>Gradle</a>, <a class='category' href='/blog/categories/jacoco/'>JaCoCo</a>, <a class='category' href='/blog/categories/code-coverage/'>code coverage</a>, <a class='category' href='/blog/categories/jmockit/'>jmockit</a>, <a class='category' href='/blog/categories/testing/'>testing</a>
+  
+</span>
+
+
+    </p>
     
-  </header>
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://csiebler.github.io/blog/2014/03/01/gradle-jmockit-code-coverage-troubles/" data-via="" data-counturl="http://csiebler.github.io/blog/2014/03/01/gradle-jmockit-code-coverage-troubles/" >Tweet</a>
+  
+  
+  
+</div>
 
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/02/09/multi-project-code-coverage-using-gradle-and-jacoco/" title="Previous Post: Multi-project code coverage using Gradle and JaCoCo">&laquo; Multi-project code coverage using Gradle and JaCoCo</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
-  <div class="entry-content"><p>After playing around with a couple of different Cobertura plugins for Gradle, I realized that using the built-in JaCoCo plugin is much easier to set up in a project consisting of multiple subprojects. Here is a quick solution for generating a holistic code coverage report in Gradle.</p>
-
-<p>Summary:</p>
-
-<ul>
-<li>The root-level project doesn&rsquo;t contain any code, it just controls the overall build process</li>
-<li>The Jacoco plugin is applied to all subprojects &ndash; the <code>jacoco</code> task will instrument the classes and capture the execution data in <code>&lt;path_to_subproject&gt;/build/jacoco/*.exec</code></li>
-<li>The root-level <code>build.gradle</code> uses the <code>JacocoReport</code> task to generate the holistic coverage report</li>
-</ul>
-
-
-<figure class='code'><figcaption><span>build.gradle (root-level project)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="n">allprojects</span> <span class="o">{</span>
-</span><span class='line'>  <span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">&#39;jacoco&#39;</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">task</span> <span class="nf">codeCoverageReport</span><span class="o">(</span><span class="nl">type:</span> <span class="n">JacocoReport</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c1">// Gather execution data from all subprojects</span>
-</span><span class='line'>    <span class="c1">// (change this if you e.g. want to calculate unit test/integration test coverage separately)</span>
-</span><span class='line'>    <span class="n">executionData</span> <span class="nf">fileTree</span><span class="o">(</span><span class="n">project</span><span class="o">.</span><span class="na">rootDir</span><span class="o">.</span><span class="na">absolutePath</span><span class="o">).</span><span class="na">include</span><span class="o">(</span><span class="s2">&quot;**/build/jacoco/*.exec&quot;</span><span class="o">)</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c1">// Add all relevant sourcesets from the subprojects </span>
-</span><span class='line'>    <span class="n">subprojects</span><span class="o">.</span><span class="na">each</span> <span class="o">{</span>
-</span><span class='line'>       <span class="n">sourceSets</span> <span class="n">it</span><span class="o">.</span><span class="na">sourceSets</span><span class="o">.</span><span class="na">main</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">reports</span> <span class="o">{</span>
-</span><span class='line'>      <span class="n">xml</span><span class="o">.</span><span class="na">enabled</span> <span class="kc">true</span>
-</span><span class='line'>      <span class="n">html</span><span class="o">.</span><span class="na">enabled</span> <span class="kc">true</span>
-</span><span class='line'>      <span class="n">html</span><span class="o">.</span><span class="na">destination</span> <span class="s2">&quot;${buildDir}/reports/jacoco&quot;</span>
-</span><span class='line'>      <span class="n">csv</span><span class="o">.</span><span class="na">enabled</span> <span class="kc">false</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">// always run the tests before generating the report</span>
-</span><span class='line'><span class="n">codeCoverageReport</span><span class="o">.</span><span class="na">dependsOn</span> <span class="o">{</span>
-</span><span class='line'>    <span class="n">subprojects</span><span class="o">*.</span><span class="na">test</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
-  
-  
 
-
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
-</div>
 <aside class="sidebar">
   
     <section>
@@ -296,6 +236,7 @@
   
 </aside>
 
+
     </div>
   </div>
   <footer role="contentinfo"><p>
@@ -310,7 +251,10 @@
       var disqus_shortname = 'codecooktravel';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://csiebler.github.io/blog/2014/03/01/gradle-jmockit-code-coverage-troubles/';
+        var disqus_url = 'http://csiebler.github.io/blog/2014/03/01/gradle-jmockit-code-coverage-troubles/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
